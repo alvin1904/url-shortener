@@ -147,6 +147,10 @@
 .link-input{
     height:4rem;
     border-radius: 1rem;
+    font-weight: var(--regular);
+    font-size: 1.5rem;
+    color:black;
+    padding-left:2rem;
 }
 .shorten{
     height:4rem;
