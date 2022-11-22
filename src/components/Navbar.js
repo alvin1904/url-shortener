@@ -7,20 +7,18 @@ function alerts(){
     alert("how are you")
 }
 
-return <div className='navbar'>
-        <div className='btns-logo'>
-            <img src={logo} alt='Shortly'></img>
+return <nav className='navbar'>
+        <div className='nav links'>
+            <button className='navbtn'><img src={logo} alt='Shortly'></img></button>
+            <button className='navbtn'>features</button>
+            <button className='navbtn'>pricing</button>            
+            <button className='navbtn'>resources</button>
         </div>
-        <div className='btns-links'>
-            <button className='btn-nav'>features</button>
-            <button className='btn-nav'>pricing</button>            
-            <button className='btn-nav'>resources</button>
+        <div className='nav auth'>
+            <button className='navbtn'>Sign In</button>
+            <button className='btn'>Sign Up</button>
         </div>
-        <div className='btns-auth'>
-            <button className='btn-signin'>Sign In</button>
-            <button className='btn btn-signup'>Sign Up</button>
-        </div>
-    </div>;
+    </nav>;
 }
 
 export default navbar;
