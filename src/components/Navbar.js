@@ -8,8 +8,10 @@ function alerts(){
 }
 
 return <nav className='navbar'>
-        <div className='nav links'>
+        <div className='nav logo'>
             <button className='navbtn'><img src={logo} alt='Shortly'></img></button>
+        </div>
+        <div className='nav links'>
             <button className='navbtn'>features</button>
             <button className='navbtn'>pricing</button>            
             <button className='navbtn'>resources</button>

@@ -3,7 +3,7 @@ import react from 'react'
 function main(){
 
 
-return <main>
+return <main className='bg-200'>
     <div className='input-container'>
         <input type='url' className='input danger'></input>
         <button className='btn'><span>Shorten it!</span></button>
@@ -23,6 +23,7 @@ return <main>
 
     <div className='heading'>
         <h3>Advanced Statistics</h3>
+        <p className='content'>Track how your links are performing across the web with our advanced statistics dashboard    </p>
     </div>
     <div className='cards'>
         <div className='card'>

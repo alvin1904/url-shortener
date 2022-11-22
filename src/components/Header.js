@@ -4,17 +4,17 @@ import img from '../images/illustration-working.svg';
 function header(){
 
 
-return <header>
-    <div className='header-left'>
+return <header className='even-columns bg-100'>
+    <div className='header'>
         <h1>
             More than just shorter links
         </h1>
-        <p>
+        <p className='content'>
             Build your brand's recognition and get detailed insights on how your links are performing
         </p>
         <button className='btn'>Get Started</button>
     </div>
-    <div className='header-right'>
+    <div className='header'>
         <img src={img} alt='Working man illustration'></img>
     </div>
 </header>;

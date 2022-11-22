@@ -8,31 +8,30 @@ import insta from '../images/icon-instagram.svg'
 function links(){
 
 
-return <div className='link-containers'>
+return <div className='link-containers bg-800'>
     <div className='link-container'>
         <button className='navbtn'><img src={logo} alt='Shortly'></img></button>
     </div>
     <div className='link-container'>
         <div>
             <h4>Features</h4>
-            <h4>cvfsjhb</h4>
-            <h4>cvfsdfgdsjhb</h4>
-            <h4>cvfsjhb</h4>
-            <h4>cvfsddfsdffgdsjhb</h4>
+            <h5>Link Shortening</h5>
+            <h5>cvfsdfgdsjhb</h5>
+            <h5>Branded Links</h5>
+            <h5>Analytics</h5>
         </div>
         <div>
-            <h4>Features</h4>
-            <h4>cvfsjhb</h4>
-            <h4>cvfsdfgdsjhb</h4>
-            <h4>cvfsjhb</h4>
-            <h4>cvfsddfsdffgdsjhb</h4>
+            <h4>Resources</h4>
+            <h5>Blog</h5>
+            <h5>Developers</h5>
+            <h5>Support</h5>
         </div>
         <div>
-            <h4>Features</h4>
-            <h4>cvfsjhb</h4>
-            <h4>cvfsdfgdsjhb</h4>
-            <h4>cvfsjhb</h4>
-            <h4>cvfsddfsdffgdsjhb</h4>
+            <h4>Company</h4>
+            <h5>About</h5>
+            <h5>Our Team</h5>
+            <h5>Careers</h5>
+            <h5>Contact</h5>
         </div>
     </div>  
     <div className='link-container'>
