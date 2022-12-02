@@ -9,14 +9,13 @@ function links(){
 
 
 return <div className='link-containers bg-800'>
-    <div className='link-container'>
+    <div className='link-container one'>
         <button className='navbtn'><img src={logo} alt='Shortly'></img></button>
     </div>
-    <div className='link-container'>
+    <div className='link-container two'>
         <div>
             <h4>Features</h4>
             <h5>Link Shortening</h5>
-            <h5>cvfsdfgdsjhb</h5>
             <h5>Branded Links</h5>
             <h5>Analytics</h5>
         </div>
@@ -34,7 +33,7 @@ return <div className='link-containers bg-800'>
             <h5>Contact</h5>
         </div>
     </div>  
-    <div className='link-container'>
+    <div className='link-container three'>
         <button className='social-icon'><img src={facebook}></img></button>
         <button className='social-icon'><img src={twitter}></img></button>
         <button className='social-icon'><img src={pinterest}></img></button>

@@ -4,7 +4,7 @@ import img from '../images/illustration-working.svg';
 function header(){
 
 
-return <header className='even-columns bg-100'>
+return <header className='head even-columns bg-100 horizontal'>
     <div className='header'>
         <h1>
             More than just shorter links
@@ -14,9 +14,8 @@ return <header className='even-columns bg-100'>
         </p>
         <button className='btn'>Get Started</button>
     </div>
-    <div className='header'>
-        <img src={img} alt='Working man illustration'></img>
-    </div>
+    <img className="header-ill" src={img} alt='Working man illustration'></img>
+
 </header>;
 }
 

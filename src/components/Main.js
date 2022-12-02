@@ -4,21 +4,24 @@ function main(){
 
 
 return <main className='bg-200'>
-    <div className='input-container'>
+    <div className='input-container horizontal'>
         <input type='url' className='input danger'></input>
         <button className='btn'><span>Shorten it!</span></button>
     </div>
-    <div className='shortened-links'>
-        <div className='shortened-link'>
+    <div className='shortened-links vertical'>
+        
+        <div className='shortened-link horizontal'>
             <p className='link-actual'>https://google.com</p>
             <p className='link-short'>https://ret.link/dasfsaf</p>
             <button className='btn'>Copy</button>
         </div>
-        <div className='shortened-link'>
+
+        <div className='shortened-link horizontal'>
             <p className='link-actual'>https://google.com</p>
             <p className='link-short'>https://ret.link/dasfsaf</p>
             <button className='btn'>Copy</button>
         </div>
+
     </div>
 
     <div className='heading'>
@@ -26,16 +29,19 @@ return <main className='bg-200'>
         <p className='content'>Track how your links are performing across the web with our advanced statistics dashboard    </p>
     </div>
     <div className='cards'>
+
         <div className='card'>
             <img src=""></img>
             <h4 className='d'>Detailed analysis</h4>
             <p className='content'>lorem ipsem set dolor sametsdfsf</p>
         </div>
+
         <div className='card'>
             <img src=""></img>
             <h4 className='d'>Detailed analysis</h4>
             <p className='content'>lorem ipsem set dolor sametsdfsf</p>
         </div>
+
         <div className='card'>
             <img src=""></img>
             <h4 className='d'>Detailed analysis</h4>
