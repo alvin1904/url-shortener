@@ -86,11 +86,17 @@
     .shortened-link>button{
         min-width: 9rem;
     }
+    .heading{
+        padding-bottom: 6rem;
+    }
     .img-holder{
         padding: 2.5vw;
         margin-top: -25%;
         margin-bottom: 5%;
         min-width: 3.5rem;
+    }
+    .card{
+        min-width: 85%;
     }
     .footer{
         height: 250px;
@@ -100,8 +106,27 @@
     .footer>button{
         font-size: calc(100% + 0.25rem);
     }
-
+    .link-containers{
+        max-width: 100%;
+        /* overflow: hidden; */
+        display: flex;
+        flex-direction: row;
+        flex-basis: 1 1 3;
+    }
+    
+    .three{
+        display: flex;
+        flex-direction: row;
+        /* background-color: green; */
+    }
+    .two{
+        /* background-color: yellow; */
+        display: flex;
+        flex-direction: row;
+        gap: 4.2rem;
+    }
 }
+
 .navbar{
     margin-top:2rem;
     margin-bottom:3rem;
@@ -145,24 +170,6 @@
 }
 
 
-.link-container>.navbtn>img{
-    filter:brightness(10)
-}
-.link-container>div>h4{
-    color: var(--clr-100);
-    font-weight: var(--fw-bold);
-}
-.link-container>div>h5{
-    color: var(--clr-200);
-    font-weight: var(--fw-regular);
-}
-.link-container>div>h5:hover{
-    color: var(--clr-400);
-    mask-image:url(./logo.svg);
-    cursor: pointer;
-    font-weight: var(--fw-regular);
-}
-
 .input-container{
     background-color: var(--clr-600);
     padding: 3rem;
@@ -176,7 +183,9 @@
 
 .input-container>input, .input-container>button{
     height: 4.2rem;
+    font-size: 1.2rem;
     border-radius: 0.5rem;
+    padding: 0rem 1.5rem; 
 }
 .shortened-links{
     margin-top: -3rem;
@@ -197,7 +206,6 @@
 .heading{
     display: grid;
     justify-items: center;
-    padding-bottom: 6rem;
 }
 .heading>h3{
     font-size: 1.8rem;
@@ -215,7 +223,7 @@
 .card{
     background-color: var(--clr-100);
     border-radius: 0.5rem;
-    padding: 3rem 3rem;
+    padding: 3rem 1.5rem;
     max-width: 85%;
 }
 .cards{
@@ -246,6 +254,45 @@
     justify-items: center;
     align-content: center;
 }
+
+
+.link-containers{
+    padding: 3rem 0rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.link-container>.navbtn>img{
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    filter:brightness(10);
+    min-width: 6rem;
+}
+.link-container>div>h4{
+    color: var(--clr-100);
+    font-weight: var(--fw-bold);
+}
+.link-container>div>h5{
+    color: var(--clr-200);
+    font-weight: var(--fw-regular);
+}
+.link-container>div>h5:hover{
+    color: var(--clr-400);
+    cursor: pointer;
+    font-weight: var(--fw-regular);
+}
+.three{
+    margin-top: 1.5rem;
+    gap:0.6rem;
+}
+.two>div>h4{
+    font-size: 1.15rem;
+}
+.two>div>h5{
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+
 /* TABLET */
 /* MOBILE*/
 @media(max-width:40em){
@@ -326,6 +373,7 @@
     .heading{
         text-align: center;
         align-items: center;
+        padding-bottom: 3rem;
     }
     .heading>p{
         max-width: 80%;
@@ -353,5 +401,21 @@
     }
     .footer>button{
         font-size: calc(100% + 0.5rem);
+    }
+    .link-containers{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+    .two{
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+    .three{
+        display: flex;
+        flex-direction: row;
+        gap: 1.5rem;
     }
 }
