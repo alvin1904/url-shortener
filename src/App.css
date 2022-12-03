@@ -73,7 +73,7 @@
         padding:0.9rem;
     }
     .header>p{
-        max-width: 18rem;
+        max-width: 50%;
     }
     .shortened-link{
         gap: 0.9rem;
@@ -86,8 +86,20 @@
     .shortened-link>button{
         min-width: 9rem;
     }
-
-
+    .img-holder{
+        padding: 2.5vw;
+        margin-top: -25%;
+        margin-bottom: 5%;
+        min-width: 3.5rem;
+    }
+    .footer{
+        height: 250px;
+        background-image: url('./images/bg-boost-desktop.svg');
+        background-size:cover;
+    }
+    .footer>button{
+        font-size: calc(100% + 0.25rem);
+    }
 
 }
 .navbar{
@@ -182,7 +194,59 @@
     font-weight: var(--fw-semibold);
 }
 
-
+.heading{
+    display: grid;
+    justify-items: center;
+    padding-bottom: 6rem;
+}
+.heading>h3{
+    font-size: 1.8rem;
+}
+.heading>p{
+    max-width: 30%;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: var(--fw-semibold);
+}
+.card>.d{
+    font-size: 1.2rem;
+    padding-bottom: 1rem;
+}
+.card{
+    background-color: var(--clr-100);
+    border-radius: 0.5rem;
+    padding: 3rem 3rem;
+    max-width: 85%;
+}
+.cards{
+    gap: 2rem;
+    justify-items: center;
+}
+.heading>p{
+    padding-bottom: 3rem;
+    text-align: center;
+    font-weight: var(--fw-semibold);
+}
+.img-holder{
+    background-color: var(--clr-600);
+    border-radius: 50%;
+    display: flex;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    max-width: 15%;
+}
+.footer>h1{
+    color: var(--clr-100);
+    font-weight: var(--fw-bold);
+    padding-bottom: 1rem;
+}
+.footer{
+    display: grid;
+    justify-items: center;
+    align-content: center;
+}
+/* TABLET */
 /* MOBILE*/
 @media(max-width:40em){
     .horizontal{
@@ -259,5 +323,35 @@
         min-width: 100%;
         border-radius: 0.5rem;
     }
-
+    .heading{
+        text-align: center;
+        align-items: center;
+    }
+    .heading>p{
+        max-width: 80%;
+    }
+    .card{
+        padding: 3rem 1rem;
+        margin-bottom: 2.5rem;
+        min-width: 110%;
+        display: grid;
+    }
+    .img-holder{
+        padding: 2.5vw;
+        margin-top: -23%;
+        margin-bottom: 10%;
+        min-width: 3.5rem;
+    }
+    .img-holder img{
+        object-fit: cover;
+    }
+    .footer{
+        background-image: url('./images/bg-boost-mobile.svg');
+        height: 300px;
+        background-size:cover;
+        text-align: center;
+    }
+    .footer>button{
+        font-size: calc(100% + 0.5rem);
+    }
 }
