@@ -18,7 +18,7 @@ return <nav className='navbar horizontal'>
                 <button className='navbtn'>resources</button>
             </div>
             <hr className='hr-nav'></hr>
-            <div className='nav auth horizontal'>
+            <div className='nav-auth horizontal'>
                 <button className='navbtn'>Login</button>
                 <button className='btn'>Sign Up</button>
             </div>

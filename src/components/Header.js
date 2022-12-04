@@ -6,7 +6,7 @@ function header(){
 
 return <header className='head even-columns bg-100 horizontal'>
     <div className='header'>
-        <h1>
+        <h1 className="transition">
             More than just shorter links
         </h1>
         <p className='content'>

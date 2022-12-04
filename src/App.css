@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,200&display=swap');
-
+.transition{
+    transition: 0.3s ease-in-out;
+}
 
 :root{
     font-family: 'Poppins', sans-serif;
@@ -45,6 +47,7 @@
         display:grid;
         grid-auto-flow: row;
     }
+
     .input-container{
         grid-template-columns: 0.75fr 0.25fr;
         gap: 1rem;
@@ -64,16 +67,18 @@
         gap:1.2rem;
     }
     .header>h1{
-        font-size: 3rem;
-        max-width:24rem;
+        font-size: 3.3rem;
+        min-width: 110%;
         line-height: 4rem;
     }
     .header>button{
-        max-width:9rem;
+        max-width:12rem;
         padding:0.9rem;
+        font-size: 1.4rem;
     }
     .header>p{
-        max-width: 50%;
+        max-width: 70%;
+        font-size: 1.2rem;
     }
     .shortened-link{
         gap: 0.9rem;
@@ -127,6 +132,15 @@
     }
 }
 
+@media(min-width:100em){
+    .header>h1{
+        font-size: 4.8rem;
+    }
+    .header>p, .header>button{
+        font-size: 1.5rem;
+    }
+}
+
 .navbar{
     margin-top:2rem;
     margin-bottom:3rem;
@@ -162,7 +176,7 @@
 .nav-mobile>div>button{
     text-transform: capitalize;
     font-weight: var(--fw-regular);
-    font-size: 1rem;
+    font-size: 1.35rem;
 }
 .navbtn:hover, .navbtn:focus-visible{
     color: var(--clr-400);
@@ -321,7 +335,7 @@
         font-weight: var(--fw-semibold);
         font-size: 1.5rem;
     }
-    .auth>.btn{
+    .nav-auth>.btn{
         min-width: 15rem;
     }
     .hr-nav{
