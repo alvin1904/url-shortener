@@ -2,8 +2,10 @@ import React, {useState, useEffect, useContext} from "react";
 
 const AppContext = React.createContext();
 const AppProvider = ({children}) => {
-    const shorten = (link)=>{
-        console.log(link)
+    
+    const [preparedData, setPreparedData] = useState([])
+    
+    const shorten = (link, shortLinks)=>{
         // fetch(`https://api.shrtco.de/v2/shorten?url=${link}`)
         //     .then((res)=> res.json())
         //     .then((res2)=> prepareData(res2, link))
@@ -22,7 +24,11 @@ const AppProvider = ({children}) => {
               "original_link": "https://www.google.com"
             }
           }
-        return prepareData(res2, link)
+        let temp = shortLinks;
+        temp.push(prepareData(res2, link))
+        setPreparedData(temp)  
+        console.log(temp)
+        console.log(preparedData)
     }
 
     const prepareData = (data, original)=>{
@@ -35,7 +41,7 @@ const AppProvider = ({children}) => {
     }
 
     return(
-        <AppContext.Provider value={{shorten}}>
+        <AppContext.Provider value={{shorten, preparedData}}>
             {children}
         </AppContext.Provider>
     )

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import i1 from '../images/icon-brand-recognition.svg'
 import i2 from '../images/icon-detailed-records.svg'
 import i3 from '../images/icon-fully-customizable.svg'
@@ -10,7 +10,7 @@ function Main(){
     const [input, setInput] = useState('');
     const [invalidLink, setInvalidLink] = useState(false)
     const [shortLinks, setShortLinks] = useState([])
-    const {shorten} = useGlobalContext();
+    const {shorten, preparedData} = useGlobalContext();
 
 const handleInvalidLink = () => {
     setInvalidLink(true);
@@ -19,16 +19,18 @@ const handleInvalidLink = () => {
 const handleSubmit = (e) => {
     e.preventDefault();
     setInvalidLink(false);
+
     const form = document.getElementById('form')
-    let temp = shortLinks;
-    if(form.checkValidity()){
-        temp.push(shorten(input))
-        setShortLinks(temp)
-    }
+    if(form.checkValidity() && input)
+        shorten(input, shortLinks)
     else    
         return handleInvalidLink();  
     setInput('')   
 }
+
+useEffect(()=>{
+    setShortLinks(preparedData)
+},preparedData)
 
 
 return <main className='bg-200'>
@@ -40,7 +42,7 @@ return <main className='bg-200'>
     </form>
     <div className='shortened-links vertical'>
         {
-            shortLinks.map((eachLink)=>{
+            shortLinks && shortLinks.length !== 0 && shortLinks.map((eachLink)=>{
                 const {code, original, short} = eachLink;
                 return (<div key={code} className='shortened-link horizontal'>
                     <p className='link-actual'>{original}</p>
