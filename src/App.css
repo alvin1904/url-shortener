@@ -192,7 +192,6 @@
     justify-content: center;
     transition: 0.5s ease-in-out;
     transform: translateY(-40%);
-    min-width: 100%;
 }
 
 .input-container>input, .input-container>button{
@@ -368,9 +367,13 @@
     }
     .input-container{
         grid-template-rows: 1fr 1fr;
-        gap: 3rem;
+        gap: 2.4rem;
+        padding: 2.4rem 1.8rem;
         background-image: url(./images/bg-shorten-mobile.svg);
         background-size:cover;
+    }
+    .input-container>input{
+        overflow: hidden;
     }
     .shortened-links{
         margin-top: -6rem;
