@@ -1,7 +1,7 @@
 import react from 'react'
 import logo from '../logo.svg'
 
-function navbar(){
+function Navbar(){
 
 function alerts(){
     alert("how are you")
@@ -26,4 +26,4 @@ return <nav className='navbar horizontal'>
     </nav>;
 }
 
-export default navbar;
+export default Navbar;

@@ -5,7 +5,7 @@ import twitter from '../images/icon-twitter.svg'
 import pinterest from '../images/icon-pinterest.svg'
 import insta from '../images/icon-instagram.svg'
 
-function links(){
+function Links(){
 
 
 return <div className='link-containers bg-800'>
@@ -42,4 +42,4 @@ return <div className='link-containers bg-800'>
 </div>;
 }
 
-export default links;
+export default Links;

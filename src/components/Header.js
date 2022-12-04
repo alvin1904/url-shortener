@@ -1,7 +1,7 @@
 import react from 'react'
 import img from '../images/illustration-working.svg';
 
-function header(){
+function Header(){
 
 
 return <header className='head even-columns bg-100 horizontal'>
@@ -19,4 +19,4 @@ return <header className='head even-columns bg-100 horizontal'>
 </header>;
 }
 
-export default header;
+export default Header;

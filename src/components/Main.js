@@ -1,16 +1,40 @@
-import react from 'react'
+import React, { useState } from "react"
 import i1 from '../images/icon-brand-recognition.svg'
 import i2 from '../images/icon-detailed-records.svg'
 import i3 from '../images/icon-fully-customizable.svg'
+import { useGlobalContext } from '../context.js'
 
-function main(){
+
+function Main(){
+
+    const [input, setInput] = useState('');
+    const [invalidLink, setInvalidLink] = useState(false)
+
+const {printh} = useGlobalContext();
+
+const handleInvalidLink = () => {
+    setInvalidLink(true);
+}
+
+const handleSubmit = (e) => {
+    const form = document.getElementById('form')
+    e.preventDefault();
+    if(form.checkValidity()){
+        setInvalidLink(false);
+        return printh(input);
+    }
+    else    
+        return handleInvalidLink();    
+}
 
 
 return <main className='bg-200'>
-    <div className='input-container horizontal'>
-        <input type='url' className='input danger'></input>
-        <button className='btn'><span>Shorten it!</span></button>
-    </div>
+    <form id='form' className='input-container horizontal'>
+        <input type='url' className='input danger' onChange={(e)=>{
+            return setInput(e.target.value);
+        }} value={input}></input>
+        <button className='btn' onClick={handleSubmit}><span>Shorten it!</span></button>
+    </form>
     <div className='shortened-links vertical'>
         
         <div className='shortened-link horizontal'>
@@ -61,4 +85,4 @@ return <main className='bg-200'>
 </main>;
 }
 
-export default main;
+export default Main;
