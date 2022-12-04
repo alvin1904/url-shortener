@@ -28,10 +28,6 @@ const handleSubmit = (e) => {
     setInput('')   
 }
 
-useEffect(()=>{
-    setShortLinks(preparedData)
-},preparedData)
-
 
 return <main className='bg-200'>
     <form id='form' className='input-container horizontal'>
@@ -51,7 +47,6 @@ return <main className='bg-200'>
                 </div>)
             })
         }
-
     </div>
 
     <div className='heading vertical'>

@@ -85,11 +85,15 @@
         grid-template-columns: 0.7fr 0.3fr;
         font-size: 1.2rem;
     }
+    .link-actual{
+        justify-self: left;
+    }
     .link-short{
         justify-self: right;
     }
     .shortened-link>button{
-        min-width: 9rem;
+        width: 9rem;
+        justify-self: right;
     }
     .heading{
         padding-bottom: 6rem;

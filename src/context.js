@@ -6,38 +6,22 @@ const AppProvider = ({children}) => {
     const [preparedData, setPreparedData] = useState([])
     
     const shorten = (link, shortLinks)=>{
-        // fetch(`https://api.shrtco.de/v2/shorten?url=${link}`)
-        //     .then((res)=> res.json())
-        //     .then((res2)=> prepareData(res2, link))
-        let res2 = {
-            "ok": true,
-            "result": {
-              "code": "41bayv",
-              "short_link": "shrtco.de/41bayv",
-              "full_short_link": "https://shrtco.de/41bayv",
-              "short_link2": "9qr.de/41bayv",
-              "full_short_link2": "https://9qr.de/41bayv",
-              "short_link3": "shiny.link/41bayv",
-              "full_short_link3": "https://shiny.link/41bayv",
-              "share_link": "shrtco.de/share/41bayv",
-              "full_share_link": "https://shrtco.de/share/41bayv",
-              "original_link": "https://www.google.com"
-            }
-          }
-        let temp = shortLinks;
-        temp.push(prepareData(res2, link))
-        setPreparedData(temp)  
-        console.log(temp)
-        console.log(preparedData)
-    }
-
-    const prepareData = (data, original)=>{
-        const obj = {            
-            code: data.result.code,
-            original: original,
-            short: data.result.short_link
-        }
-        return obj
+        fetch(`https://api.shrtco.de/v2/shorten?url=${link}`)
+            .then((res1)=> res1.json())
+            .then((res2)=> {
+                const obj = {            
+                    code: res2.result.code,
+                    original: link,
+                    short: res2.result.short_link
+                }
+                return obj;
+            })
+            .then((res3)=>{
+                let temp = shortLinks;
+                temp.push(res3)
+                return res3;
+            })
+            .then((res4)=> setPreparedData(res4))
     }
 
     return(
