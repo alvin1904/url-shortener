@@ -9,45 +9,46 @@ function Main(){
 
     const [input, setInput] = useState('');
     const [invalidLink, setInvalidLink] = useState(false)
-
-const {printh} = useGlobalContext();
+    const [shortLinks, setShortLinks] = useState([])
+    const {shorten} = useGlobalContext();
 
 const handleInvalidLink = () => {
     setInvalidLink(true);
 }
 
 const handleSubmit = (e) => {
-    const form = document.getElementById('form')
     e.preventDefault();
+    setInvalidLink(false);
+    const form = document.getElementById('form')
+    let temp = shortLinks;
     if(form.checkValidity()){
-        setInvalidLink(false);
-        return printh(input);
+        temp.push(shorten(input))
+        setShortLinks(temp)
     }
     else    
-        return handleInvalidLink();    
+        return handleInvalidLink();  
+    setInput('')   
 }
 
 
 return <main className='bg-200'>
     <form id='form' className='input-container horizontal'>
-        <input type='url' className='input danger' onChange={(e)=>{
+        <input type='url' className={`input transition ${invalidLink?'danger':''}`} onChange={(e)=>{
             return setInput(e.target.value);
         }} value={input}></input>
         <button className='btn' onClick={handleSubmit}><span>Shorten it!</span></button>
     </form>
     <div className='shortened-links vertical'>
-        
-        <div className='shortened-link horizontal'>
-            <p className='link-actual'>https://google.com</p>
-            <p className='link-short'>https://ret.link/dasfsaf</p>
-            <button className='btn'>Copy</button>
-        </div>
-
-        <div className='shortened-link horizontal'>
-            <p className='link-actual'>https://google.com</p>
-            <p className='link-short'>https://ret.link/dasfsaf</p>
-            <button className='btn'>Copy</button>
-        </div>
+        {
+            shortLinks.map((eachLink)=>{
+                const {code, original, short} = eachLink;
+                return (<div key={code} className='shortened-link horizontal'>
+                    <p className='link-actual'>{original}</p>
+                    <p className='link-short'>{short}</p>
+                    <button className='btn'>Copy</button>
+                </div>)
+            })
+        }
 
     </div>
 
