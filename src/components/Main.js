@@ -10,6 +10,8 @@ function Main(){
     const [input, setInput] = useState('');
     const [invalidLink, setInvalidLink] = useState(false)
     const [shortLinks, setShortLinks] = useState([])
+    const [copy, setCopy] = useState(false)
+    const [copiedLink, setCopiedLink] = useState('')
     const {shorten, preparedData} = useGlobalContext();
 
 const handleInvalidLink = () => {
@@ -43,7 +45,20 @@ return <main className='bg-200'>
                 return (<div key={code} className='shortened-link horizontal'>
                     <p className='link-actual'>{original}</p>
                     <p className='link-short'>{short}</p>
-                    <button className='btn'>Copy</button>
+                    <button className={`btn ${(copiedLink===short && copy)?'copying':''}`} onClick={()=>{
+                        setCopy(true)
+                        setCopiedLink(short)
+                        navigator.clipboard.writeText(short)
+                        }} 
+                    onMouseLeave = {()=>{
+                        if(copy){
+                            const timeOu = setTimeout(()=>{
+                                setCopy(false)
+                                setCopiedLink('')
+                            },2000)
+                            return ()=>clearTimeout(timeOu)
+                        }
+                    }}>{`${(copiedLink===short && copy)?'Copied!':'Copy'}`}</button>
                 </div>)
             })
         }
