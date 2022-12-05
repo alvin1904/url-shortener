@@ -197,11 +197,24 @@
     transform: translateY(-40%);
 }
 
-.input-container>input, .input-container>button{
+.input-container>div>input, .input-container>button{
     height: 4.2rem;
     font-size: 1.2rem;
     border-radius: 0.5rem;
     padding: 0rem 1.5rem; 
+}
+.input-container>button, .input-container>div{
+    align-self:center;
+}
+.errormsg{
+    margin-top: 1.2%;
+    font-size: 1.35rem;
+    color: rgb(255, 72, 72);
+    text-transform: capitalize;
+    font-weight: 4rem;
+}
+.hide{
+    display:none;
 }
 .input{
     border: none;
@@ -383,12 +396,12 @@
     }
     .input-container{
         grid-template-rows: 1fr 1fr;
-        gap: 2.4rem;
+        gap: 1.2rem;
         padding: 2.4rem 1.8rem;
         background-image: url(./images/bg-shorten-mobile.svg);
         background-size:cover;
     }
-    .input-container>input{
+    .input-container>div{
         overflow: hidden;
     }
     .shortened-links{

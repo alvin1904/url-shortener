@@ -9,13 +9,18 @@ function Main(){
 
     const [input, setInput] = useState('');
     const [invalidLink, setInvalidLink] = useState(false)
+    const [errorMsgMain, setErrorMsgMain] = useState('')
+
     const [shortLinks, setShortLinks] = useState([])
+    
     const [copy, setCopy] = useState(false)
     const [copiedLink, setCopiedLink] = useState('')
-    const {shorten, preparedData} = useGlobalContext();
+
+    const {shorten, errorMsg} = useGlobalContext();
 
 const handleInvalidLink = () => {
     setInvalidLink(true);
+    setErrorMsgMain("Invalid Link!")
 }
 
 const handleSubmit = (e) => {
@@ -30,14 +35,26 @@ const handleSubmit = (e) => {
     setInput('')   
 }
 
+useEffect(()=>{
+    if(errorMsg){
+        setErrorMsgMain(errorMsg)
+        setInvalidLink(true)
+    }
+    else
+        console.log("Error cleared")
+},[errorMsg])
 
 return <main className='bg-200'>
-    <form id='form' className='input-container horizontal'>
-        <input type='url' className={`input transition ${invalidLink?'danger':''}`} onChange={(e)=>{
-            return setInput(e.target.value);
-        }} value={input}></input>
+    <form id='form' className='input-container horizontal '>
+        <div className="vertical">
+            <input type='url' className={`input ${(invalidLink)?'danger':''}`} onChange={(e)=>{
+                return setInput(e.target.value);
+            }} value={input}></input>
+            <p className={`errormsg ${(invalidLink)?'':'hide'}`}>{invalidLink&&((errorMsgMain) || errorMsg)}</p>
+        </div>
         <button className='btn' onClick={handleSubmit}><span>Shorten it!</span></button>
     </form>
+
     <div className='shortened-links vertical'>
         {
             shortLinks && shortLinks.length !== 0 && shortLinks.map((eachLink)=>{
