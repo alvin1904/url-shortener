@@ -14,6 +14,7 @@ const AppProvider = ({children}) => {
     }
 
     const shorten = (link)=>{
+        setErrorMsg('')
         setLoading(true)
         setLongLink(link)
         setFetchToggle(true)
@@ -22,6 +23,12 @@ const AppProvider = ({children}) => {
     useEffect(()=>{
         let apiData={}
         const fetchURL = () => {
+            let x = newLinks.filter((newLink)=>newLink.original === longLink).length
+            if(x>0){
+                setLoading(false)
+                x=0
+                return 
+            }
             fetch(`https://api.shrtco.de/v2/shorten?url=${longLink}`)
                 .then((res1)=> res1.json())
                 .then((res2)=> {
