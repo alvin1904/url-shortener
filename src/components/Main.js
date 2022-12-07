@@ -10,13 +10,11 @@ function Main(){
     const [input, setInput] = useState('');
     const [error, setError] = useState(false)
     const [errorMsgMain, setErrorMsgMain] = useState('')
-
     const [shortLinks, setShortLinks] = useState([])
-    
     const [copy, setCopy] = useState(false)
     const [copiedLink, setCopiedLink] = useState('')
 
-    const {shorten, loading} = useGlobalContext();
+    const {shorten, loading, setTheLoading, newLinks, errorMsg} = useGlobalContext();
 
 
 const handleSubmit = (e) => {
@@ -33,8 +31,17 @@ const handleSubmit = (e) => {
     setInput('')   
 }
 
-const errorMsg='vere pani illadey'
+useEffect(()=>{
+    setShortLinks(newLinks)
+},[newLinks])
 
+useEffect(()=>{
+    if(errorMsg){
+        setTheLoading(false)
+        setError(true)
+        setErrorMsgMain(errorMsg)
+    }
+},[errorMsg])
 return <main className='bg-200'>
     <form id='form' className='input-container horizontal '>
         <div className="vertical forloading">
@@ -42,13 +49,13 @@ return <main className='bg-200'>
                 return setInput(e.target.value);
             }} value={input}></input>
             <div className={`loader-1 center ${(loading)?'':'hide'}`}><span></span></div>
-            <p className={`errormsg ${(error)?'':'hide'}`}>{error&&((errorMsgMain) || errorMsg)}</p>
+            <p className={`errormsg ${(error)?'':'hide'}`}>{error&&errorMsgMain}</p>
         </div>
         <button className='btn' onClick={handleSubmit}><span>Shorten it!</span></button>
     </form>
     <div className='shortened-links vertical'>
         {
-            shortLinks.map((eachLink)=>{
+            shortLinks && shortLinks.length!==0 && shortLinks.map((eachLink)=>{
                 const {code, original, short} = eachLink;
                 return (<div key={code} className='shortened-link horizontal'>
                     <p className='link-actual'>{original}</p>

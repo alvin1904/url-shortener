@@ -275,7 +275,7 @@
 	50%  { transform: rotate(-160deg); }
 	100% { transform: rotate(140deg); }
 }
-/* CREDITS FOR ANIMATION: https://codepen.io/nobuakihonma/pen/dYbqLQ */
+/* ANIMATION: https://codepen.io/nobuakihonma/pen/dYbqLQ */
 
 .input{
     border: none;
