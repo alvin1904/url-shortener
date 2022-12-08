@@ -1,11 +1,46 @@
-import react from 'react'
+import react, { useEffect, useState } from 'react'
 import logo from '../logo.svg'
+import { FaGoogle } from 'react-icons/fa'
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { auth } from '../firebase'
 
 function Navbar(){
 
-function alerts(){
-    alert("how are you")
-}
+    const [signedIn, setSignedIn] = useState(false) 
+    const [signInReq, setSignInReq] = useState(false)   
+    const [userName, setUserName] = useState('')
+
+    const signInFn = ()=>{
+        const googleProvider = new GoogleAuthProvider();
+        console.log(googleProvider)
+        const GoogleLogin = async ()=>{
+            try{
+                console.log("adfadf")
+                const result = await signInWithPopup(auth, googleProvider)
+                let temp = result.user.displayName
+                setUserName(temp)
+                setSignedIn(true)
+            }catch(err){
+                setSignedIn(false)
+                console.log(err)
+            }
+
+        }
+        GoogleLogin()
+    }
+
+    const signOutFn = ()=>{
+        console.log("sign out")
+    }
+
+useEffect(()=>{
+    if(signInReq)
+        signInFn();
+    else
+        signOutFn();
+},[signInReq])
+
+
 
 return <nav className='navbar horizontal'>
         <div className='nav logo'>
@@ -19,8 +54,14 @@ return <nav className='navbar horizontal'>
             </div>
             <hr className='hr-nav'></hr>
             <div className='nav-auth horizontal'>
-                <button className='navbtn'>Login</button>
-                <button className='btn'>Sign Up</button>
+                <button className='nav-hello'>{userName?"Hi "+userName+"!":"Login here with: "}</button>
+                <button 
+                    className={`btn btn-google${signedIn?'signedout':''}`}
+                        onClick={()=>{
+                            setSignInReq(!signInReq)
+                        }}>
+                        {signedIn?'Sign Out':<FaGoogle size = {25}/>}
+                </button>
             </div>
         </div>    
     </nav>;

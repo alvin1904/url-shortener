@@ -157,6 +157,14 @@
     padding-right: var(--padding);    
     margin-inline: auto;
 }
+.nav-auth{
+    color: white;
+    gap: 2rem;
+    align-items: center;
+}
+.nav-hello{
+    justify-self: end;
+}
 .even-columns{
     display:grid;
     gap:1rem;
@@ -176,6 +184,22 @@
     background-color: var(--clr-300);
     cursor: pointer;
 }
+
+.btn-google{
+    padding: .5vw;
+    margin:0;
+    width: 5.5vw;
+    height:3rem;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+}
+.signedout{
+    width: 100%;
+    height:3rem;
+}
+
+
 .nav-mobile>div>button{
     text-transform: capitalize;
     font-weight: var(--fw-regular);
@@ -410,10 +434,13 @@
     .navbtn>img{
         width:9rem;
     }
+    .navbar{
+        justify-content: center;
+    }
     .nav-mobile{
         margin-top: 1rem;
         display: grid;
-        display: none;
+        /* display: none; */
         background-color: var(--clr-600);
         padding: 3rem;
         border-radius: 1rem;
