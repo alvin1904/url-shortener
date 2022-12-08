@@ -142,6 +142,18 @@
     .header>p, .header>button{
         font-size: 1.5rem;
     }
+    .fancy{
+        text-decoration: underline black;
+        text-underline-offset: 0.95rem;
+        font-weight: var(--fw-medium);
+        padding: 0.5rem;
+    }
+    .fancy:hover{
+        background-color: var(--clr-600);
+        color:white;
+        cursor: pointer;
+        border-radius: 0.25rem;
+    }
 }
 
 .navbar{
@@ -202,7 +214,7 @@
 
 .nav-mobile>div>button{
     text-transform: capitalize;
-    font-weight: var(--fw-regular);
+    /* font-weight: var(--fw-regular); */
     font-size: 1.35rem;
 }
 .navbtn:hover, .navbtn:focus-visible{

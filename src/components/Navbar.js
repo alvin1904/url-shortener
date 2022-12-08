@@ -1,7 +1,7 @@
 import react, { useEffect, useState } from 'react'
 import logo from '../logo.svg'
 import { FaGoogle } from 'react-icons/fa'
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth'
 import { auth } from '../firebase'
 
 function Navbar(){
@@ -12,25 +12,27 @@ function Navbar(){
 
     const signInFn = ()=>{
         const googleProvider = new GoogleAuthProvider();
-        console.log(googleProvider)
         const GoogleLogin = async ()=>{
             try{
-                console.log("adfadf")
                 const result = await signInWithPopup(auth, googleProvider)
                 let temp = result.user.displayName
                 setUserName(temp)
                 setSignedIn(true)
+                onAuthStateChanged(auth,(user)=>{
+                    console.log(user.uid)
+                })
             }catch(err){
                 setSignedIn(false)
                 console.log(err)
             }
-
         }
         GoogleLogin()
     }
 
     const signOutFn = ()=>{
-        console.log("sign out")
+        auth.signOut()
+        setUserName('')
+        setSignedIn(false)
     }
 
 useEffect(()=>{
@@ -39,8 +41,6 @@ useEffect(()=>{
     else
         signOutFn();
 },[signInReq])
-
-
 
 return <nav className='navbar horizontal'>
         <div className='nav logo'>
@@ -54,7 +54,7 @@ return <nav className='navbar horizontal'>
             </div>
             <hr className='hr-nav'></hr>
             <div className='nav-auth horizontal'>
-                <button className='nav-hello'>{userName?"Hi "+userName+"!":"Login here with: "}</button>
+                <button className={`nav-hello vertical transition ${userName?'fancy':''}`}>{userName?"Hi "+userName+"!":"Login here with: "}</button>
                 <button 
                     className={`btn btn-google${signedIn?'signedout':''}`}
                         onClick={()=>{

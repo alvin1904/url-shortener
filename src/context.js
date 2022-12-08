@@ -26,6 +26,7 @@ const AppProvider = ({children}) => {
             let x = newLinks.filter((newLink)=>newLink.original === longLink).length
             if(x>0){
                 setLoading(false)
+                setErrorMsg("Avoid entering already shortened links")
                 x=0
                 return 
             }

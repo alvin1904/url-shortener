@@ -4,6 +4,10 @@ import i2 from '../images/icon-detailed-records.svg'
 import i3 from '../images/icon-fully-customizable.svg'
 import { useGlobalContext } from '../context.js'
 
+import { db, auth } from '../firebase'
+import { collection, getDocs } from "firebase/firestore"; 
+import { onAuthStateChanged } from 'firebase/auth'
+
 
 function Main(){
 
@@ -13,7 +17,6 @@ function Main(){
     const [shortLinks, setShortLinks] = useState([])
     const [copy, setCopy] = useState(false)
     const [copiedLink, setCopiedLink] = useState('')
-
     const {shorten, loading, setTheLoading, newLinks, errorMsg} = useGlobalContext();
 
 
@@ -26,7 +29,7 @@ const handleSubmit = (e) => {
         shorten(input)
     else{
         setError(true);
-        return setErrorMsgMain("orengi poda")
+        return setErrorMsgMain("Invalid Link!")
     } 
     setInput('')   
 }
@@ -42,6 +45,9 @@ useEffect(()=>{
         setErrorMsgMain(errorMsg)
     }
 },[errorMsg])
+
+
+
 return <main className='bg-200'>
     <form id='form' className='input-container horizontal '>
         <div className="vertical forloading">
@@ -71,7 +77,7 @@ return <main className='bg-200'>
                                 setCopy(false)
                                 setCopiedLink('')
                             },2000)
-                            return ()=>clearTimeout(timeOu)
+                            return ()=>{clearTimeout(timeOu)}
                         }
                     }}>{`${(copiedLink===short && copy)?'Copied!':'Copy'}`}</button>
                 </div>)
