@@ -2,7 +2,14 @@ import React, {useState, useEffect, useContext} from "react";
 
 const AppContext = React.createContext();
 const AppProvider = ({children}) => {
+
+    // THE CURRENT LOGGED IN USER
+    const [userId, setUserId] = useState('')
+    const setTheUserId = (uid)=>{
+        setUserId(uid)
+    }
     
+    //CONTEXT
     const [fetchToggle, setFetchToggle] = useState(false)
     const [longLink, setLongLink] = useState('')
     const [newLinks, setNewLinks] = useState([])
@@ -70,7 +77,9 @@ const AppProvider = ({children}) => {
                                     loading,
                                     setTheLoading,
                                     newLinks,
-                                    errorMsg
+                                    errorMsg,
+                                    userId,
+                                    setTheUserId
                                     }}>
             {children}
         </AppContext.Provider>

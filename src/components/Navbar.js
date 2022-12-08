@@ -3,12 +3,15 @@ import logo from '../logo.svg'
 import { FaGoogle } from 'react-icons/fa'
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth'
 import { auth } from '../firebase'
+import { useGlobalContext } from '../context'
 
 function Navbar(){
 
     const [signedIn, setSignedIn] = useState(false) 
     const [signInReq, setSignInReq] = useState(false)   
     const [userName, setUserName] = useState('')
+
+    const {setTheUserId} = useGlobalContext();
 
     const signInFn = ()=>{
         const googleProvider = new GoogleAuthProvider();
@@ -19,7 +22,8 @@ function Navbar(){
                 setUserName(temp)
                 setSignedIn(true)
                 onAuthStateChanged(auth,(user)=>{
-                    console.log(user.uid)
+                    // console.log(user.uid)
+                    setTheUserId(user.uid)
                 })
             }catch(err){
                 setSignedIn(false)

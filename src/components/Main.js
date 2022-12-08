@@ -5,7 +5,7 @@ import i3 from '../images/icon-fully-customizable.svg'
 import { useGlobalContext } from '../context.js'
 
 import { db, auth } from '../firebase'
-import { collection, getDocs } from "firebase/firestore"; 
+import { collection, getDocs, onSnapshotsInSync } from "firebase/firestore"; 
 import { onAuthStateChanged } from 'firebase/auth'
 
 
@@ -17,7 +17,7 @@ function Main(){
     const [shortLinks, setShortLinks] = useState([])
     const [copy, setCopy] = useState(false)
     const [copiedLink, setCopiedLink] = useState('')
-    const {shorten, loading, setTheLoading, newLinks, errorMsg} = useGlobalContext();
+    const {shorten, loading, setTheLoading, newLinks, errorMsg, userId} = useGlobalContext();
 
 
 const handleSubmit = (e) => {
@@ -45,6 +45,36 @@ useEffect(()=>{
         setErrorMsgMain(errorMsg)
     }
 },[errorMsg])
+
+useEffect(()=>{
+    if(userId){
+        onAuthStateChanged(auth,(user)=>{
+            if(user!=null){
+                setTheLoading(true)
+                const colRef = collection(db, 'url-data')
+                getDocs(colRef)
+                .then((snapshot)=>{
+                    snapshot.docs.filter((doc)=>{
+                        if(doc.id == userId){
+                            let temp = doc.data()
+                            let temp2 = Object.values(temp)
+                            setShortLinks(temp2)
+                            setTheLoading(false)
+                        }       
+                    })   
+                })
+                .catch((err)=>{
+                    console.log(err.message)
+                })
+            }    
+            else{
+                console.log("user is null")
+                setShortLinks([])
+            }
+                    
+        })
+    }
+},[userId])
 
 
 
