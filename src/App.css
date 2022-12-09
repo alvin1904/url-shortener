@@ -243,10 +243,9 @@
     align-self:center;
 }
 .errormsg{
-    margin-top: 1.2%;
+    margin-top: 5px;
     font-size: 1.35rem;
     color: rgb(255, 72, 72);
-    text-transform: capitalize;
     font-weight: 4rem;
 }
 .hide{
@@ -443,6 +442,10 @@
         display: grid;
         grid-auto-flow: row;
     }
+    .errormsg{
+        margin-top: 20px;
+        text-align: center;
+    }
     .navbtn>img{
         width:9rem;
     }
@@ -501,6 +504,7 @@
         grid-template-rows: 1fr 1fr;
         gap: 1.2rem;
         padding: 2.4rem 1.8rem;
+        /* padding-bottom: 1.8rem; */
         background-image: url(./images/bg-shorten-mobile.svg);
         background-size:cover;
     }

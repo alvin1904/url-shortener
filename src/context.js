@@ -1,10 +1,14 @@
 import React, {useState, useEffect, useContext} from "react";
 
+import {db, auth} from './firebase'
+import {doc,arrayUnion, updateDoc} from 'firebase/firestore'
+
 const AppContext = React.createContext();
 const AppProvider = ({children}) => {
 
     // THE CURRENT LOGGED IN USER
     const [userId, setUserId] = useState('')
+
     const setTheUserId = (uid)=>{
         setUserId(uid)
     }
@@ -12,12 +16,15 @@ const AppProvider = ({children}) => {
     //CONTEXT
     const [fetchToggle, setFetchToggle] = useState(false)
     const [longLink, setLongLink] = useState('')
-    const [newLinks, setNewLinks] = useState([])
+    const [addLink, setAddLink] = useState(false)
     const [errorMsg, setErrorMsg] = useState('')
     const [loading, setLoading] = useState(false)
 
     const setTheLoading = (b)=>{
         setLoading(b)
+    }
+    const setTheAddLink = (b)=>{
+        setAddLink(b)
     }
 
     const shorten = (link)=>{
@@ -30,28 +37,26 @@ const AppProvider = ({children}) => {
     useEffect(()=>{
         let apiData={}
         const fetchURL = () => {
-            let x = newLinks.filter((newLink)=>newLink.original === longLink).length
-            if(x>0){
-                setLoading(false)
-                setErrorMsg("Avoid entering already shortened links")
-                x=0
-                return 
-            }
             fetch(`https://api.shrtco.de/v2/shorten?url=${longLink}`)
                 .then((res1)=> res1.json())
                 .then((res2)=> {
+                    console.log(res2)
                     apiData = res2
                     const obj = {            
-                        code: res2.result.code,
-                        original: longLink,
-                        short: res2.result.short_link
+                        'code': `${res2.result.code}`,
+                        'original': `${longLink}`,
+                        'short': `${res2.result.short_link}`
                     }
                     return obj;
                 })
                 .then((res3)=>{
-                    let temp=newLinks
-                    temp.push(res3)
-                    setNewLinks(temp)
+                    if(userId){
+                        const newRef = doc(db, 'url-data', userId)
+                        updateDoc(newRef,{
+                            links: arrayUnion(res3)
+                        })
+                    }
+                    setAddLink(true)
                     setLoading(false)
                 })
                 .catch((err)=>{
@@ -63,12 +68,20 @@ const AppProvider = ({children}) => {
                                 break;
                         case 6: setErrorMsg("Something unknown to us is wrong")   
                                 break;
+                        case 10:setErrorMsg("The link you entered is a disallowed link")
+                                break;        
                         default: setErrorMsg("Your internet must be down")              
                     }
                 })
         }    
-        if(fetchToggle)
-            fetchURL();
+        if(fetchToggle){
+            try{
+                fetchURL();
+            }
+            catch(err){
+                console.log(err)
+            }
+        }
         setFetchToggle(false)    
     },[fetchToggle])
 
@@ -76,10 +89,11 @@ const AppProvider = ({children}) => {
         <AppContext.Provider value={{shorten,
                                     loading,
                                     setTheLoading,
-                                    newLinks,
                                     errorMsg,
                                     userId,
-                                    setTheUserId
+                                    setTheUserId,
+                                    addLink,
+                                    setTheAddLink
                                     }}>
             {children}
         </AppContext.Provider>

@@ -22,8 +22,10 @@ function Navbar(){
                 setUserName(temp)
                 setSignedIn(true)
                 onAuthStateChanged(auth,(user)=>{
-                    // console.log(user.uid)
-                    setTheUserId(user.uid)
+                    if(user!=null)
+                        setTheUserId(user.uid)
+                    else
+                        setTheUserId('')                        
                 })
             }catch(err){
                 setSignedIn(false)
@@ -60,7 +62,7 @@ return <nav className='navbar horizontal'>
             <div className='nav-auth horizontal'>
                 <button className={`nav-hello vertical transition ${userName?'fancy':''}`}>{userName?"Hi "+userName+"!":"Login here with: "}</button>
                 <button 
-                    className={`btn btn-google${signedIn?'signedout':''}`}
+                    className={`btn btn-google ${signedIn?'signedout':''}`}
                         onClick={()=>{
                             setSignInReq(!signInReq)
                         }}>

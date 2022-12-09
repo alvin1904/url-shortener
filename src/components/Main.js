@@ -5,7 +5,7 @@ import i3 from '../images/icon-fully-customizable.svg'
 import { useGlobalContext } from '../context.js'
 
 import { db, auth } from '../firebase'
-import { collection, getDocs, onSnapshotsInSync } from "firebase/firestore"; 
+import { doc, getDoc, setDoc } from "firebase/firestore"; 
 import { onAuthStateChanged } from 'firebase/auth'
 
 
@@ -17,26 +17,27 @@ function Main(){
     const [shortLinks, setShortLinks] = useState([])
     const [copy, setCopy] = useState(false)
     const [copiedLink, setCopiedLink] = useState('')
-    const {shorten, loading, setTheLoading, newLinks, errorMsg, userId} = useGlobalContext();
+    const {shorten, loading, setTheLoading, errorMsg, userId, addLink, setTheAddLink} = useGlobalContext();
 
 
-const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = () => {
+    let x = shortLinks.filter((shortLink)=>{
+        return shortLink.original == input})
+    if(x.length > 0)
+        return produceError("Try to avoid duplicate link requests")
     setError(false)
-
+    setErrorMsgMain('')
+    setInput('')   
     const form = document.getElementById('form')
     if(form.checkValidity() && input)
         shorten(input)
-    else{
-        setError(true);
-        return setErrorMsgMain("Invalid Link!")
-    } 
-    setInput('')   
+    else
+        produceError("Invalid Link!")
 }
-
-useEffect(()=>{
-    setShortLinks(newLinks)
-},[newLinks])
+const produceError = (a)=>{
+    setError(true)
+    return setErrorMsgMain(a)
+}
 
 useEffect(()=>{
     if(errorMsg){
@@ -47,35 +48,63 @@ useEffect(()=>{
 },[errorMsg])
 
 useEffect(()=>{
+    if(userId==''){
+        setTheLoading(false)
+        setError(false)
+        setErrorMsgMain('')
+    }
+},[userId])
+
+useEffect(()=>{
     if(userId){
         onAuthStateChanged(auth,(user)=>{
             if(user!=null){
+                setInput('')
+                setError(false)
+                setErrorMsgMain("")
                 setTheLoading(true)
-                const colRef = collection(db, 'url-data')
-                getDocs(colRef)
+
+                const docRef = doc(db, 'url-data',userId)
+                getDoc(docRef)
                 .then((snapshot)=>{
-                    snapshot.docs.filter((doc)=>{
-                        if(doc.id == userId){
-                            let temp = doc.data()
-                            let temp2 = Object.values(temp)
-                            setShortLinks(temp2)
-                            setTheLoading(false)
-                        }       
-                    })   
-                })
+                    if(!snapshot.exists()){
+                        setDoc(docRef,{links : []})
+                            .then(()=>{"document added"})
+                    }
+                    else{
+                            let temp = snapshot.data().links
+                            setShortLinks(temp)
+                        }    
+                })   
+                .then(()=>{
+                    setTheLoading(false)  
+                })     
                 .catch((err)=>{
                     console.log(err.message)
                 })
             }    
             else{
-                console.log("user is null")
                 setShortLinks([])
             }
                     
         })
     }
+    else{
+        console.log("signed out")
+    }
 },[userId])
 
+useEffect(()=>{
+    if(addLink){
+        const docRef = doc(db, 'url-data',userId)
+        getDoc(docRef)
+        .then((snapshot)=>{
+            let temp = snapshot.data().links
+            setShortLinks(temp)
+        })    
+    }
+    setTheAddLink(false)
+},[addLink])
 
 
 return <main className='bg-200'>
@@ -87,7 +116,10 @@ return <main className='bg-200'>
             <div className={`loader-1 center ${(loading)?'':'hide'}`}><span></span></div>
             <p className={`errormsg ${(error)?'':'hide'}`}>{error&&errorMsgMain}</p>
         </div>
-        <button className='btn' onClick={handleSubmit}><span>Shorten it!</span></button>
+        <button className='btn' onClick={(e)=>{
+            e.preventDefault();
+            userId?handleSubmit():produceError("Sign in first to use our services!")
+        }}><span>Shorten it!</span></button>
     </form>
     <div className='shortened-links vertical'>
         {
