@@ -21,16 +21,16 @@ This website integrates with shrtcode API to create shortened URLs and display t
 
 ## Screenshots
 
-<img src='./assets/1.png' width='1000px'>
+<img src='./assets/1.png' width='1000px' height='1430px'>
 
 <br>
 
-<img src='./assets/2.png' width='1000px'>
+<img src='./assets/2.png' width='1000px' height='1430px'>
 
 <br>
 
-<img src='./assets/3.png' width='1000px'>
+<img src='./assets/3.png' width='1000px' height='1430px'>
 
 <br>
 
-<img src='./assets/4.jpg' width='1000px'>
+<img src='./assets/4.jpg' width='1000px' height='543px'>
