@@ -83,6 +83,7 @@ const AppProvider = ({children}) => {
             }
         }
         setFetchToggle(false)    
+        // eslint-disable-next-line
     },[fetchToggle])
 
     return(

@@ -41,7 +41,7 @@
 
 /* desktop */
 @media(min-width: 40em){
-    .logo>svg, .closethebtn>svg{
+    .hamburger, .closethebtn>svg{
         display: none;
     }
     body{
@@ -142,13 +142,8 @@
     }
 }
 
-@media(min-width:100em){
-    .header>h1{
-        font-size: 4.8rem;
-    }
-    .header>p, .header>button{
-        font-size: 1.5rem;
-    }
+@media(min-width:70em){
+
     .fancy{
         text-decoration: underline black;
         text-underline-offset: 0.95rem;
@@ -160,8 +155,11 @@
         color:white;
         cursor: pointer;
         border-radius: 0.25rem;
+        text-decoration: none;
     }
+    
 }
+
 
 .navbar{
     margin-top:2rem;
@@ -458,11 +456,12 @@
     }
     .navbar{
         justify-content: center;
+        justify-items: center;
     }
     .logo{
         display: grid;
         grid-auto-flow: column;
-        gap: 21vw;
+        gap: 30vw;
     }
 
     .nav-mobile{
@@ -474,6 +473,10 @@
         border-radius: 1rem;
         justify-content: center;
         transition: 0.5s ease-out;
+    }
+
+    .hides, .hides>*{
+        display: none;
     }
     .nav-mobile>div>button{
         color: white;

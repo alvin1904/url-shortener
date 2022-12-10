@@ -45,6 +45,7 @@ useEffect(()=>{
         setError(true)
         setErrorMsgMain(errorMsg)
     }
+    // eslint-disable-next-line
 },[errorMsg])
 
 useEffect(()=>{
@@ -53,6 +54,7 @@ useEffect(()=>{
         setError(false)
         setErrorMsgMain('')
     }
+    // eslint-disable-next-line
 },[userId])
 
 useEffect(()=>{
@@ -92,6 +94,7 @@ useEffect(()=>{
     else{
         console.log("signed out")
     }
+    // eslint-disable-next-line
 },[userId])
 
 useEffect(()=>{
@@ -104,6 +107,7 @@ useEffect(()=>{
         })    
     }
     setTheAddLink(false)
+    // eslint-disable-next-line
 },[addLink])
 
 

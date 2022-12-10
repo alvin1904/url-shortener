@@ -13,51 +13,60 @@ function Navbar(){
     const [signedIn, setSignedIn] = useState(false) 
     const [signInReq, setSignInReq] = useState(false)   
     const [userName, setUserName] = useState('')
-
+    const [viewModal, setViewModal] = useState(false)
     const {setTheUserId} = useGlobalContext();
 
     const signInFn = ()=>{
-        const googleProvider = new GoogleAuthProvider();
-        const GoogleLogin = async ()=>{
-            try{
-                const result = await signInWithPopup(auth, googleProvider)
-                let temp = result.user.displayName
-                setUserName(temp)
-                setSignedIn(true)
-                onAuthStateChanged(auth,(user)=>{
-                    if(user!=null)
-                        setTheUserId(user.uid)
-                    else
-                        setTheUserId('')                        
-                })
-            }catch(err){
-                setSignedIn(false)
-                console.log(err)
+        if(signInReq){
+            const googleProvider = new GoogleAuthProvider();
+            const GoogleLogin = async ()=>{
+                try{
+                    const result = await signInWithPopup(auth, googleProvider)
+                    let temp = result.user.displayName
+                    setUserName(temp)
+                    setSignedIn(true)
+                    onAuthStateChanged(auth,(user)=>{
+                        if(user!=null)
+                            setTheUserId(user.uid)
+                        else
+                            setTheUserId('')                        
+                    })
+                }catch(err){
+                    setSignedIn(false)
+                    console.log(err)
+                }
             }
+            GoogleLogin()
         }
-        GoogleLogin()
     }
 
     const signOutFn = ()=>{
-        auth.signOut()
-        setUserName('')
-        setSignedIn(false)
+        if(!signInReq){
+            auth.signOut()
+            setUserName('')
+            setSignedIn(false)
+        }
     }
 
 useEffect(()=>{
     if(signInReq)
-        signInFn();
+        return signInFn();
     else
-        signOutFn();
+        return signOutFn();
+    // eslint-disable-next-line    
 },[signInReq])
 
-return <nav className='navbar horizontal'>
+
+
+return <nav className='navbar transition horizontal'>
         <div className='nav logo'>
-            <button className='navbtn'><img src={logo} alt='Shortly'></img></button>
-            <GiHamburgerMenu classname='hamburger' size={40}/>
+            <button className='navbtn transition'><img src={logo} alt='Shortly'></img></button>
+            <span className={`hamburger ${viewModal?'hides':''}`}><GiHamburgerMenu size={40} onClick={()=>{
+                setViewModal(true)
+            }}/></span>
         </div>
         
-        <div className="nav-mobile horizontal">
+        <div className={`nav-mobile horizontal transition ${viewModal?'':'hides'}`}>
             <div className='nav links horizontal'>
                 <button className='navbtn'>features</button>
                 <button className='navbtn'>pricing</button>            
@@ -73,8 +82,10 @@ return <nav className='navbar horizontal'>
                         }}>
                         {signedIn?'Sign Out':<FaGoogle size = {25}/>}
                 </button>
-                <div classname='closethebtn'>
-                    <BsFillArrowUpCircleFill className={`${'hidee'}close-btn animate__animated animate__bounce`} size= {40}/>
+                <div classname='closethebtn' onClick={()=>{
+                    setViewModal(false)
+                }}>
+                    <BsFillArrowUpCircleFill className={`${'hidee'}close-btn animate__animated animate__pulse`} size= {40}/>
                 </div> 
             </div>
 
