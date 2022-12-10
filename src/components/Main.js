@@ -22,7 +22,7 @@ function Main(){
 
 const handleSubmit = () => {
     let x = shortLinks.filter((shortLink)=>{
-        return shortLink.original == input})
+        return shortLink.original === input})
     if(x.length > 0)
         return produceError("Try to avoid duplicate link requests")
     setError(false)
@@ -48,7 +48,7 @@ useEffect(()=>{
 },[errorMsg])
 
 useEffect(()=>{
-    if(userId==''){
+    if(userId === ''){
         setTheLoading(false)
         setError(false)
         setErrorMsgMain('')
@@ -153,7 +153,7 @@ return <main className='bg-200'>
         <div className='cards horizontal'>
             <div className='card'>
                 <div className='img-holder'>
-                    <img src={i1}></img>
+                    <img src={i1} alt='img-holder-1'></img>
                 </div>
                 <h4 className='d'>Brand Recognition</h4>
                 <p className='content'>Boost your brand recognition with each click. Generic links don't mean a thing. Branded links help instill a confidence in your content.</p>
@@ -161,7 +161,7 @@ return <main className='bg-200'>
 
             <div className='card'>
                 <div className='img-holder'>
-                    <img src={i2}></img>
+                    <img src={i2} alt='img-holder-2'></img>
                 </div>
                 <h4 className='d'>Detailed Records</h4>
                 <p className='content'>Gain insights into who is clicking your links. Knowing when and where people engage with your content helps inform better decisions.</p>
@@ -169,7 +169,7 @@ return <main className='bg-200'>
 
             <div className='card'>
                 <div className='img-holder'>
-                    <img src={i3}></img>
+                    <img src={i3} alt='img-holder-3'></img>
                 </div>
                 <h4 className='d'>Fully Customizable</h4>
                 <p className='content'>Improve brand awareness and content discoverability though customizable links, supercharging audience engagement</p>

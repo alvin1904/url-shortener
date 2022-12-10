@@ -1,4 +1,3 @@
-import react from 'react'
 import img from '../images/illustration-working.svg';
 
 function Header(){

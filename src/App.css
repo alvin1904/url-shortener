@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,200&display=swap');
 
+:root {
+    --animate-duration: infinite;
+    --animate-delay: 0.9s;
+  }
+
 .transition{
     transition: 0.3s ease-in-out;
 }
@@ -36,7 +41,9 @@
 
 /* desktop */
 @media(min-width: 40em){
-
+    .logo>svg, .closethebtn>svg{
+        display: none;
+    }
     body{
         align-items: center;
     }
@@ -452,6 +459,12 @@
     .navbar{
         justify-content: center;
     }
+    .logo{
+        display: grid;
+        grid-auto-flow: column;
+        gap: 21vw;
+    }
+
     .nav-mobile{
         margin-top: 1rem;
         display: grid;
@@ -472,13 +485,20 @@
     .nav-auth>.btn{
         min-width: 15rem;
     }
+    .nav-auth{
+        justify-items: center;
+    }
     .hr-nav{
         display: inline-block;
         width: 100%;
-
         margin-top:1.5rem;
         margin-bottom: 1.5rem;
     }
+    .close-btn{
+        color: white;
+        margin-top: 0.25rem;
+    }
+
 
     .header, .head{
         justify-items: center;

@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from "react";
 
-import {db, auth} from './firebase'
+import {db} from './firebase'
 import {doc,arrayUnion, updateDoc} from 'firebase/firestore'
 
 const AppContext = React.createContext();
@@ -60,16 +60,16 @@ const AppProvider = ({children}) => {
                     setLoading(false)
                 })
                 .catch((err)=>{
-                    console.log(err)
+                    // console.log(err)
                     switch(apiData.error_code){
-                        case 2: setErrorMsg("Invalid URL submitted")
-                                break;
-                        case 3: setErrorMsg("Rate limit reached. Wait a second")
-                                break;
-                        case 6: setErrorMsg("Something unknown to us is wrong")   
-                                break;
-                        case 10:setErrorMsg("The link you entered is a disallowed link")
-                                break;        
+                        case 2:  setErrorMsg("Invalid URL submitted")
+                                 break;
+                        case 3:  setErrorMsg("Rate limit reached. Wait a second")
+                                 break;
+                        case 6:  setErrorMsg("Something unknown to us is wrong")   
+                                 break;
+                        case 10: setErrorMsg("The link you entered is a disallowed link")
+                                 break;        
                         default: setErrorMsg("Your internet must be down")              
                     }
                 })

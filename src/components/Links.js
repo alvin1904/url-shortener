@@ -1,4 +1,3 @@
-import react from 'react'
 import logo from '../logo.svg'
 import facebook from '../images/icon-facebook.svg'
 import twitter from '../images/icon-twitter.svg'
@@ -34,10 +33,10 @@ return <div className='link-containers bg-800'>
         </div>
     </div>  
     <div className='link-container three'>
-        <button className='social-icon'><img src={facebook}></img></button>
-        <button className='social-icon'><img src={twitter}></img></button>
-        <button className='social-icon'><img src={pinterest}></img></button>
-        <button className='social-icon'><img src={insta}></img></button>
+        <button className='social-icon'><img src={facebook} alt = 'facebook-logo'></img></button>
+        <button className='social-icon'><img src={twitter} alt = 'twitter-logo'></img></button>
+        <button className='social-icon'><img src={pinterest} alt = 'pinterest-logo'></img></button>
+        <button className='social-icon'><img src={insta} alt = 'insta-logo'></img></button>
     </div>  
 </div>;
 }

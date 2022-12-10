@@ -1,9 +1,12 @@
-import react, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { BsFillArrowUpCircleFill } from 'react-icons/bs'
+import { GiHamburgerMenu } from 'react-icons/gi' 
 import logo from '../logo.svg'
 import { FaGoogle } from 'react-icons/fa'
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth'
 import { auth } from '../firebase'
 import { useGlobalContext } from '../context'
+import 'animate.css';
 
 function Navbar(){
 
@@ -51,7 +54,9 @@ useEffect(()=>{
 return <nav className='navbar horizontal'>
         <div className='nav logo'>
             <button className='navbtn'><img src={logo} alt='Shortly'></img></button>
+            <GiHamburgerMenu classname='hamburger' size={40}/>
         </div>
+        
         <div className="nav-mobile horizontal">
             <div className='nav links horizontal'>
                 <button className='navbtn'>features</button>
@@ -68,8 +73,13 @@ return <nav className='navbar horizontal'>
                         }}>
                         {signedIn?'Sign Out':<FaGoogle size = {25}/>}
                 </button>
+                <div classname='closethebtn'>
+                    <BsFillArrowUpCircleFill className={`${'hidee'}close-btn animate__animated animate__bounce`} size= {40}/>
+                </div> 
             </div>
-        </div>    
+
+        </div> 
+ 
     </nav>;
 }
 
