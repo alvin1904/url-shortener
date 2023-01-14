@@ -1,7 +1,8 @@
 # URL-shortener
 
 This website integrates with shrtcode API to create shortened URLs and display them like in the screenshots.
-Hosted Link: https://url-shortener-8b7d8.web.app/
+
+The website hosted link: https://url-shortener-8b7d8.web.app/
 
 ## Features
 

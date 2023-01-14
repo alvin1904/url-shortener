@@ -40,7 +40,7 @@ const AppProvider = ({children}) => {
             fetch(`https://api.shrtco.de/v2/shorten?url=${longLink}`)
                 .then((res1)=> res1.json())
                 .then((res2)=> {
-                    console.log(res2)
+                    // console.log(res2)
                     apiData = res2
                     const obj = {            
                         'code': `${res2.result.code}`,
